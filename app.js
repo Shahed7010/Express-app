@@ -1,10 +1,19 @@
 //import package
 const express = require('express');
+const fs = require('fs');
+
 let app = express();
 
+let movies = JSON.parse(fs.readFileSync('./data/movies.json'));
 //route
-app.get('/', (req, res) => {
-    res.status(200).send('hello from express server');
+app.get('/api/v1/movies', (req, res) => {
+    res.status(200).json({
+        status: "success",
+        count: movies.length,
+        data: {
+            movies: movies
+        }
+    });
 })
 
 
