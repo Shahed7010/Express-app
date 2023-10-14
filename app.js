@@ -5,12 +5,13 @@ let app = express();
 
 app.use(express.static('./public'));
 app.use(express.json());
-app.use(morgan('dev'));
 app.use((req, res, next) => {
     req.requestedAt = new Date().toISOString();
     next();
 });
-
+if (process.env.APP_ENV === 'local'){
+    app.use(morgan('dev'));
+}
 
 const moviesRouter = require('./Routes/moviesRoute');
 
