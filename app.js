@@ -19,7 +19,7 @@ const moviesRouter = require('./Routes/moviesRoute');
 // app.patch('/api/v1/movies/:id', updateMovie);
 // app.delete('/api/v1/movies/:id', deleteMovie);
 
-app.use('/api/v1/movies', moviesRouter);
+app.use('/api/v1', moviesRouter);
 
 module.exports = app;
 

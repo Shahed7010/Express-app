@@ -3,10 +3,12 @@ const moviesController = require('./../Controllers/MovieController')
 //route
 const router = express.Router();
 
-router.route('/')
+router.param('id', moviesController.checkId);
+
+router.route('/movies')
     .get(moviesController.getAllMovies)
     .post(moviesController.storeMovie);
-router.route('/:id')
+router.route('/movies/:id')
     .get(moviesController.getMovie)
     .patch(moviesController.updateMovie)
     .delete(moviesController.deleteMovie);
