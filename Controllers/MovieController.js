@@ -4,7 +4,6 @@ let movies = JSON.parse(fs.readFileSync('./data/movies.json'));
 
 exports.checkId = (req, res, next, vlaue) => {
     const movie = movies.find((m) => m.id === +vlaue);
-
     if (!movie) {
         return res.status(404).json({
             status: "fail",
@@ -13,7 +12,17 @@ exports.checkId = (req, res, next, vlaue) => {
             }
         });
     }
-
+    next();
+}
+exports.validateBody = (req, res, next) => {
+    if (!req.body.name || !req.body.releaseYear){
+        return res.status(400).json({
+            status: "fail",
+            data: {
+                message: 'Movie data is not valid!'
+            }
+        });
+    }
     next();
 }
 
