@@ -4,6 +4,8 @@ env.config({path: './config.env'})
 
 const app = require('./app')
 
+// mongoose.set('strictQuery', true);
+
 mongoose.connect(process.env.CONNECTION_URI, {
     useNewUrlParser: true
 }).then((conn) => {
